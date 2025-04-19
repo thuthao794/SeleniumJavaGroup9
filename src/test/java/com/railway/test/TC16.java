@@ -17,7 +17,7 @@ public class TC16 extends PreparationCommonTest {
 
         // Test data
         String selectDate = "4/23/2025";
-        String selectDepartStation = "Đà Nẵng";
+        String selectDepartStation = "Sài Gòn";
         String selectArriveStation = "Nha Trang";
         String selectSeatType = "Hard seat";
         String selectTicketAmount = "1";

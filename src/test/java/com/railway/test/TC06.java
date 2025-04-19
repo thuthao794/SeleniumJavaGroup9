@@ -41,7 +41,7 @@ public class TC06 {
         // Verify tabs are displayed
         assertTrue(driver.findElement(By.linkText("My ticket")).isDisplayed(), "'My ticket' tab not found.");
         assertTrue(driver.findElement(By.linkText("Change password")).isDisplayed(), "'Change password' tab not found.");
-        assertTrue(driver.findElement(By.linkText("Log out")).isDisplayed(), "'Logout' tab not found.");
+        assertTrue(driver.findElement(By.linkText("Logout")).isDisplayed(), "'Logout' tab not found.");
 
         // Click My ticket tab
         driver.findElement(By.linkText("My ticket")).click();

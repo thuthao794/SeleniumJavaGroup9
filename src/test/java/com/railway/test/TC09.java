@@ -48,10 +48,6 @@ public class TC09 {
             // Step 4: Kiểm tra thông báo
             verifyMessage("//p[@class='message success']", "Your password has been updated!");
 
-            // Step 5: Khôi phục lại mật khẩu ban đầu
-            changePassword(newPassword, PASSWORD);
-            System.out.println("Khôi phục mật khẩu ban đầu thành công.");
-
         } catch (Exception e) {
             logError("Lỗi trong quá trình thực thi TC09", e);
             Assert.fail("TC09 thất bại: " + e.getMessage());
@@ -67,56 +63,40 @@ public class TC09 {
     }
 
     private void openUrl(String url) {
-        try {
-            driver.get(url);
-            System.out.println("Truy cập URL thành công: " + url);
-        } catch (Exception e) {
-            throw new RuntimeException("Không thể mở URL: " + url, e);
-        }
+        driver.get(url);
+        System.out.println("Truy cập URL thành công: " + url);
     }
 
     private void login(String username, String password) {
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Login"))).click();
-            System.out.println("Đi đến trang Login...");
+        wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Login"))).click();
+        System.out.println("Đi đến trang Login...");
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username"))).sendKeys(username);
-            driver.findElement(By.id("password")).sendKeys(password);
-            driver.findElement(By.xpath("//input[@type='submit']")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username"))).sendKeys(username);
+        driver.findElement(By.id("password")).sendKeys(password);
+        driver.findElement(By.xpath("//input[@type='submit']")).click();
 
-            System.out.println("Đăng nhập thành công với: " + username);
-        } catch (Exception e) {
-            throw new RuntimeException("Không thể đăng nhập!", e);
-        }
+        System.out.println("Đăng nhập thành công với: " + username);
     }
 
     private void changePassword(String currentPassword, String newPassword) {
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Change password"))).click();
-            System.out.println("Đi đến trang Change Password...");
+        wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Change password"))).click();
+        System.out.println("Đi đến trang Change Password...");
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("currentPassword"))).sendKeys(currentPassword);
-            driver.findElement(By.id("newPassword")).sendKeys(newPassword);
-            driver.findElement(By.id("confirmPassword")).sendKeys(newPassword);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("currentPassword"))).sendKeys(currentPassword);
+        driver.findElement(By.id("newPassword")).sendKeys(newPassword);
+        driver.findElement(By.id("confirmPassword")).sendKeys(newPassword);
 
-            WebElement submitBtn = driver.findElement(By.xpath("//input[@type='submit']"));
-            js.executeScript("arguments[0].scrollIntoView(true);", submitBtn);
-            js.executeScript("arguments[0].click();", submitBtn);
+        WebElement submitBtn = driver.findElement(By.xpath("//input[@type='submit']"));
+        js.executeScript("arguments[0].scrollIntoView(true);", submitBtn);
+        js.executeScript("arguments[0].click();", submitBtn);
 
-            System.out.println("Đổi mật khẩu từ '" + currentPassword + "' sang '" + newPassword + "' thành công.");
-        } catch (Exception e) {
-            throw new RuntimeException("Không thể thay đổi mật khẩu!", e);
-        }
+        System.out.println("Đổi mật khẩu từ '" + currentPassword + "' sang '" + newPassword + "' thành công.");
     }
 
     private void verifyMessage(String xpath, String expectedMessage) {
-        try {
-            String actualMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).getText();
-            System.out.println("Thông báo hiển thị: " + actualMessage);
-            Assert.assertEquals(actualMessage, expectedMessage, "Thông báo không khớp!");
-        } catch (Exception e) {
-            throw new RuntimeException("Không thể kiểm tra thông báo!", e);
-        }
+        String actualMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).getText();
+        System.out.println("Thông báo hiển thị: " + actualMessage);
+        Assert.assertEquals(actualMessage, expectedMessage, "Thông báo không khớp!");
     }
 
     private void logError(String message, Exception e) {

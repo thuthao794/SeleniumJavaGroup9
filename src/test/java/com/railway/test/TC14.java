@@ -17,9 +17,9 @@ public class TC14 extends PreparationCommonTest {
 
         // Test data
         String expectedDate = "4/23/2025";
-        String expectedDepartStation = "Đà Nẵng";
+        String expectedDepartStation = "Sài Gòn";
         String expectedArriveStation = "Nha Trang";
-        String expectedSeatType = "Hard seat";
+        String expectedSeatType = "Soft bed with air conditioner";
         String expectedTicketAmount = "1";
 
         // Step 1: Open Home Page and Login
