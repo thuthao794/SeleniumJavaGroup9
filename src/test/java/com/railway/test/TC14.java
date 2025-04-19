@@ -37,14 +37,14 @@ public class TC14 extends PreparationCommonTest {
 
         // Step 4: Validate Ticket Information
         Map<String, String> ticketInformation = bookTicketPage.getTicketInformation();
-        if (ticketInformation != null) {
+        if (ticketInformation != null && !ticketInformation.isEmpty()) {
             softAssert.assertEquals(ticketInformation.get("Depart Date"), expectedDate, "TEST FAIL: Depart Date is incorrect.");
             softAssert.assertEquals(ticketInformation.get("Depart Station"), expectedDepartStation, "TEST FAIL: Depart Station is incorrect.");
             softAssert.assertEquals(ticketInformation.get("Arrive Station"), expectedArriveStation, "TEST FAIL: Arrive Station is incorrect.");
             softAssert.assertEquals(ticketInformation.get("Seat Type"), expectedSeatType, "TEST FAIL: Seat Type is incorrect.");
             softAssert.assertEquals(ticketInformation.get("Amount"), expectedTicketAmount, "TEST FAIL: Ticket Amount is incorrect.");
         } else {
-            softAssert.fail("TEST FAIL: Ticket information is null.");
+            softAssert.fail("TEST FAIL: Ticket information is null or empty.");
         }
 
         // Assert all
